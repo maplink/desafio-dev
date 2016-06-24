@@ -10,9 +10,19 @@ namespace Maplink.DesafioDev.WebApi.Lib.Compositions
         public void Compose(IServiceRegistry serviceRegistry)
         {
             serviceRegistry.Register(factory => new SearchService(
+                ConfigurationManager.AppSettings["MaplinkApi.Search.Url"],
                 ConfigurationManager.AppSettings["MaplinkApi.Authentication.ApplicationCode"],
-                ConfigurationManager.AppSettings["MaplinkApi.Search.Url"], 
-                factory.GetInstance<MaplinkSignedUrl>()));
+                factory.GetInstance<MaplinkService>()));
+
+            serviceRegistry.Register(factory => new RouteService(
+                ConfigurationManager.AppSettings["MaplinkApi.Route.Url"],
+                ConfigurationManager.AppSettings["MaplinkApi.Authentication.ApplicationCode"],
+                factory.GetInstance<MaplinkService>()));
+
+            serviceRegistry.Register(factory => new MaplinkService(
+                ConfigurationManager.AppSettings["MaplinkApi.Authentication.Token"],
+                factory.GetInstance<MaplinkSignedUrl>(),
+                factory.GetInstance<RestHandler>()));
         }
     }
 }

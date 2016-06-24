@@ -21,6 +21,7 @@ namespace Maplink.DesafioDev.WebApi.Lib
         protected override void ConfigureApplicationContainer(IServiceContainer container)
         {
             container.RegisterFrom<BaseComposition>();
+            container.RegisterFrom<MaplinkServiceComposition>();
         }
     }
 }

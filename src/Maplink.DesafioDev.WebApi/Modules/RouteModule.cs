@@ -8,10 +8,10 @@ namespace Maplink.DesafioDev.WebApi.Modules
     {
         public RouteModule(DoRouteCommand command) : base("routes")
         {
-            Post["/"] = _ =>
+            Post["/", true] = async (parameters, ct) =>
             {
                 var request = BindRequest<RouteRequest>();
-                var response = command.Execute(request);
+                var response = await command.Execute(request);
                 return Response.AsJson(response);
             };
         }

@@ -7,6 +7,16 @@ namespace Maplink.DesafioDev.Domain.Entities
     {
         public IEnumerable<RouteResponseItem> Data { get; set; }
         public IEnumerable<string> Errors { get; set; } = new List<string>();
-        public bool Success => !Errors.Any() && Data.Any();
+        public bool Success => !Errors.Any() && Data != null && Data.Any();
+
+        public RouteResponse(RouteResponseItem item)
+        {
+            Data = new[] {item};
+        }
+
+        public RouteResponse(IEnumerable<string> errors)
+        {
+            Errors = errors;
+        }
     }
 }

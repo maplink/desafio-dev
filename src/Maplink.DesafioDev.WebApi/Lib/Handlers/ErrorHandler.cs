@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Maplink.DesafioDev.Domain.Entities;
 using Maplink.DesafioDev.Infrastructure.Exceptions;
 using Nancy;
 using Newtonsoft.Json;
@@ -40,8 +41,8 @@ namespace Maplink.DesafioDev.WebApi.Lib.Handlers
 
         private static Response CreateResponse(IEnumerable<string> errors, HttpStatusCode httpStatusCode)
         {
-            var erros = new { erros = errors };
-            var jsonArray = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(erros));
+            var routeResponse = new RouteResponse(errors);
+            var jsonArray = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(routeResponse));
 
             return new Response
             {

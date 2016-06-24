@@ -17,8 +17,7 @@ namespace Maplink.DesafioDev.Infrastructure.Extensions
 
         private static IEnumerable<string> GetMessages(this IEnumerable<ValidationFailure> errors)
         {
-            return errors
-                .Select(s => s.ErrorMessage);
+            return errors.Select(s => s.ErrorMessage);
         }
     }
 }

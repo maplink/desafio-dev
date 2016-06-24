@@ -21,7 +21,7 @@ namespace Maplink.DesafioDev.WebApi.Lib.Compositions
 
             serviceRegistry.Register(factory => new MaplinkService(
                 ConfigurationManager.AppSettings["MaplinkApi.Authentication.Token"],
-                factory.GetInstance<MaplinkSignedUrl>(),
+                factory.GetInstance<MaplinkSignUrl>(),
                 factory.GetInstance<RestHandler>()));
         }
     }

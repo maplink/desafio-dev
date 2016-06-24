@@ -6,12 +6,12 @@ namespace Maplink.DesafioDev.Infrastructure.Services
     public class MaplinkService
     {
         private readonly string _token;
-        private readonly MaplinkSignedUrl _maplinkSignedUrl;
+        private readonly MaplinkSignUrl _maplinkSignedUrl;
         private readonly RestHandler _restHandler;
 
         public MaplinkService(
             string token, 
-            MaplinkSignedUrl maplinkSignedUrl,
+            MaplinkSignUrl maplinkSignedUrl,
             RestHandler restHandler)
         {
             _token = token;

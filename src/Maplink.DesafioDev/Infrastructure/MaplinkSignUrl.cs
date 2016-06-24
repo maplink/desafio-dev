@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Maplink.DesafioDev.Infrastructure
 {
-    public class MaplinkSignedUrl
+    public class MaplinkSignUrl
     {
         public virtual string Sign(string url, string keyString)
         {

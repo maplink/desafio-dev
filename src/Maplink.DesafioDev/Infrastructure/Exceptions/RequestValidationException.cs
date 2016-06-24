@@ -11,7 +11,7 @@ namespace Maplink.DesafioDev.Infrastructure.Exceptions
         private readonly IEnumerable<string> _errors;
 
         public RequestValidationException(string message)
-            : base(message)
+            : this(new [] { message })
         {
         }
 

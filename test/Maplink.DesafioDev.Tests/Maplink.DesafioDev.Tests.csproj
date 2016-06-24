@@ -54,6 +54,10 @@
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,8 +68,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DoRouteCommandTests.cs" />
     <Compile Include="Domain\Entities\AddressTests.cs" />
     <Compile Include="Domain\Entities\LocationTests.cs" />
+    <Compile Include="Domain\Entities\RouteRequestTests.cs" />
+    <Compile Include="Domain\Entities\RouteResponseTests.cs" />
+    <Compile Include="Domain\Validators\AddressValidatorValidatorsTests.cs" />
+    <Compile Include="Domain\Validators\RouteRequestValidatorTests.cs" />
+    <Compile Include="Infrastructure\Exceptions\RequestValidationExceptionTests.cs" />
+    <Compile Include="Infrastructure\Extensions\EnumerableStringExtensionsTests.cs" />
+    <Compile Include="Infrastructure\Extensions\ValidationResultExtensionsTests.cs" />
+    <Compile Include="Infrastructure\MaplinkSignUrlTests.cs" />
+    <Compile Include="Infrastructure\RestHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

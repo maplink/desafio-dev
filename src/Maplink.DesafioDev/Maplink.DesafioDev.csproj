@@ -64,7 +64,7 @@
     <Compile Include="Infrastructure\Exceptions\RequestValidationException.cs" />
     <Compile Include="Infrastructure\Extensions\EnumerableStringExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\ValidationResultExtensions.cs" />
-    <Compile Include="Infrastructure\MaplinkSignedUrl.cs" />
+    <Compile Include="Infrastructure\MaplinkSignUrl.cs" />
     <Compile Include="Infrastructure\RestHandler.cs" />
     <Compile Include="Infrastructure\Services\MaplinkService.cs" />
     <Compile Include="Infrastructure\Services\RouteService.cs" />

@@ -17,6 +17,10 @@ namespace Maplink.DesafioDev.Infrastructure.Services
             _maplinkService = maplinkService;
         }
 
+        protected SearchService()
+        {
+        }
+
         public virtual async Task<Location> GetLocation(Address address)
         {
             var requestUri = GetRequestUri(address);

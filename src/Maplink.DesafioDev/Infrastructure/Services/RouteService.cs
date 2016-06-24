@@ -20,6 +20,10 @@ namespace Maplink.DesafioDev.Infrastructure.Services
             _maplinkService = maplinkService;
         }
 
+        protected RouteService()
+        {
+        }
+
         public virtual async Task<RouteResponse> GetRouteData(IEnumerable<Location> locations, string routeType)
         {
             var requestUri = GetRequestUri(locations.ToList(), routeType);

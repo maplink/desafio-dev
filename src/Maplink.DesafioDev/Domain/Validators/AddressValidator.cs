@@ -1,22 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentValidation;
+﻿using FluentValidation;
 using Maplink.DesafioDev.Domain.Entities;
 
 namespace Maplink.DesafioDev.Domain.Validators
 {
     public class AddressValidator : AbstractValidator<Address>
     {
-        private static readonly IEnumerable<string> AcceptedUfs = new[]
-        {
-            "AC", "AL", "AP", "AM", "BA",
-            "CE", "DF", "ES", "GO", "MA",
-            "MT", "MS", "MG", "PA", "PB",
-            "PR", "PE", "PI", "RJ", "RN",
-            "RS", "RO", "RR", "SC", "SP",
-            "SE", "TO"
-        };
-
         public AddressValidator()
         {
             RuleFor(request => request.Street)
@@ -37,8 +25,8 @@ namespace Maplink.DesafioDev.Domain.Validators
 
             When(request => !string.IsNullOrEmpty(request.State), () =>
             {
-                RuleFor(request => request.State)
-                    .Must(state => AcceptedUfs.Contains(state.ToUpper()))
+                RuleFor(request => request)
+                    .Must(request => request.IsValidState())
                     .WithMessage("entry state information is not valid");
             });
         }

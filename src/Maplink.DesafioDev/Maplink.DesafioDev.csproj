@@ -49,6 +49,7 @@
     <Compile Include="Domain\Entities\IEntityValidation.cs" />
     <Compile Include="Domain\Entities\Location.cs" />
     <Compile Include="Domain\Entities\RouteRequest.cs" />
+    <Compile Include="Domain\Entities\RouteResponseItem.cs" />
     <Compile Include="Domain\Entities\RouteResponse.cs" />
     <Compile Include="Domain\Validators\AddressValidator.cs" />
     <Compile Include="Domain\Validators\RouteRequestValidator.cs" />

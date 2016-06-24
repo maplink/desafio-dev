@@ -1,10 +1,12 @@
-﻿namespace Maplink.DesafioDev.Domain.Entities
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Maplink.DesafioDev.Domain.Entities
 {
     public class RouteResponse
     {
-        public int TotalTime { get; set; }
-        public int TotalDistance { get; set; }
-        public int FuelCost { get; set; }
-        public int TotalCostWithToll { get; set; }
+        public IEnumerable<RouteResponseItem> Data { get; set; }
+        public IEnumerable<string> Errors { get; set; } = new List<string>();
+        public bool Success => !Errors.Any() && Data.Any();
     }
 }

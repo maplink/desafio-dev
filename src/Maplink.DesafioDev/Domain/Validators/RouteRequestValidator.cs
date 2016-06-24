@@ -11,6 +11,10 @@ namespace Maplink.DesafioDev.Domain.Validators
                 .NotEmpty()
                 .WithMessage("addresses should be informed")
                 .SetCollectionValidator(new AddressValidator());
+
+            RuleFor(request => request)
+                .Must(request => request.IsValidType())
+                .WithMessage("entry route type is not valid");
         }
     }
 }

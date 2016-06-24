@@ -1,4 +1,6 @@
-﻿namespace Maplink.DesafioDev.Domain.Entities
+﻿using System.Globalization;
+
+namespace Maplink.DesafioDev.Domain.Entities
 {
     public class Location
     {
@@ -7,7 +9,14 @@
 
         public virtual string ToWaypoint(int index)
         {
-            return $"waypoint.{index}.latlng={Longitude},{Latitude}";
+            return $"waypoint.{index}.latlng={FormatLatLng(Latitude)},{FormatLatLng(Longitude)}";
+        }
+
+        private static string FormatLatLng(double value)
+        {
+            return value
+                .ToString(CultureInfo.InvariantCulture)
+                .Replace(",", ".");
         }
     }
 }

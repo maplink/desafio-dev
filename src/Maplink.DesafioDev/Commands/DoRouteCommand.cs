@@ -16,6 +16,10 @@ namespace Maplink.DesafioDev.Commands
             _routeService = routeService;
         }
 
+        protected DoRouteCommand()
+        {
+        }
+
         public virtual async Task<RouteResponse> Execute(RouteRequest request)
         {
             var locations = await Task.WhenAll(request

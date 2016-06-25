@@ -3,6 +3,7 @@ using LightInject.Nancy;
 using Maplink.DesafioDev.WebApi.Lib.Compositions;
 using Nancy.Bootstrapper;
 using Nancy.Json;
+using Newtonsoft.Json;
 
 namespace Maplink.DesafioDev.WebApi.Lib
 {
@@ -20,6 +21,7 @@ namespace Maplink.DesafioDev.WebApi.Lib
 
         protected override void ConfigureApplicationContainer(IServiceContainer container)
         {
+            container.Register(typeof(JsonSerializer), typeof(CustomJsonSerializer));
             container.RegisterFrom<BaseComposition>();
             container.RegisterFrom<MaplinkServiceComposition>();
         }

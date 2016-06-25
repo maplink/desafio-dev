@@ -1,31 +1,29 @@
 ﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Maplink.DesafioDev.Infrastructure;
+using Moq;
 using NUnit.Framework;
+using RestSharp;
 
 namespace Maplink.DesafioDev.Tests.Infrastructure
 {
     [TestFixture]
     public class RestHandlerTests
     {
-        private RestHandler _restHandler;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _restHandler = new RestHandler();
-        }
-
         [Test]
-        public async void Get_GivenUrl_ShouldReturnContent()
+        public async void Get_GivenValidUrlAndResponse_ShouldNotBeNull()
         {
-            const string url = "http://www.google.com";
+            const string url = "valid-url";
 
-            string result = await _restHandler.Get(url);
+            var restHandler = new StubRestHandler();
+
+            object result = await restHandler.Get(url);
 
             result
                 .Should()
-                .NotBeNullOrWhiteSpace();
+                .NotBeNull();
         }
 
         [Test, ExpectedException(typeof(Exception), ExpectedMessage = "failed to consume api rest with get action. url 'http://google.invalid'.")]
@@ -33,7 +31,23 @@ namespace Maplink.DesafioDev.Tests.Infrastructure
         {
             const string url = "http://google.invalid";
 
-            await _restHandler.Get(url);
+            await new RestHandler().Get(url);
+        }
+
+        class StubRestHandler : RestHandler
+        {
+            protected override async Task<IRestResponse> GetContent(string url, IRestRequest request)
+            {
+                var taskCompletionSource = new TaskCompletionSource<IRestResponse>();
+
+                taskCompletionSource.SetResult(new RestResponse
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = @"{""parameter"":""value""}"
+                });
+
+                return await taskCompletionSource.Task;
+            }
         }
     }
 }

@@ -29,6 +29,12 @@ namespace Maplink.DesafioDev.Infrastructure.Services
             return location;
         }
 
+        protected virtual string Sign(string uri)
+        {
+            var signedUri = _maplinkService.Sign(uri);
+            return signedUri;
+        }
+
         private static Location CreateResult(dynamic searchResponse)
         {
             dynamic location = searchResponse.results?[0]?.location;
@@ -46,7 +52,7 @@ namespace Maplink.DesafioDev.Infrastructure.Services
             var uriParameters = $"?q={address.ToAutocomplete()}&applicationCode={_applicationCode}";
             var uri = new Uri(baseUri, uriParameters);
             
-            var signedUri = _maplinkService.Sign(uri.ToString());
+            var signedUri = Sign(uri.ToString());
             return signedUri;
         }
     }

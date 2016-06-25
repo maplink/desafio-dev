@@ -32,6 +32,12 @@ namespace Maplink.DesafioDev.Infrastructure.Services
             return new RouteResponse(result);
         }
 
+        protected virtual string Sign(string uri)
+        {
+            var signedUri = _maplinkService.Sign(uri);
+            return signedUri;
+        }
+
         private static RouteResponseItem CreateResult(dynamic routeResponse)
         {
             dynamic route = routeResponse.routes?[0];
@@ -62,7 +68,7 @@ namespace Maplink.DesafioDev.Infrastructure.Services
 
             var uri = new Uri(baseUri, uriParameters.ToString());
 
-            var signedUri = _maplinkService.Sign(uri.ToString());
+            var signedUri = Sign(uri.ToString());
             return signedUri;
         }
     }

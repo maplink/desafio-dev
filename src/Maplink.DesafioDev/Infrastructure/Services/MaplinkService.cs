@@ -6,17 +6,21 @@ namespace Maplink.DesafioDev.Infrastructure.Services
     public class MaplinkService
     {
         private readonly string _token;
-        private readonly MaplinkSignUrl _maplinkSignedUrl;
+        private readonly MaplinkSignUrl _maplinkSignUrl;
         private readonly RestHandler _restHandler;
 
         public MaplinkService(
             string token, 
-            MaplinkSignUrl maplinkSignedUrl,
+            MaplinkSignUrl maplinkSignUrl,
             RestHandler restHandler)
         {
             _token = token;
-            _maplinkSignedUrl = maplinkSignedUrl;
+            _maplinkSignUrl = maplinkSignUrl;
             _restHandler = restHandler;
+        }
+
+        protected MaplinkService()
+        {
         }
 
         public virtual Task<dynamic> GetContent(string requestUri)
@@ -25,9 +29,9 @@ namespace Maplink.DesafioDev.Infrastructure.Services
             return content;
         }
 
-        public string Sign(string url)
+        public virtual string Sign(string url)
         {
-            var signedUri = _maplinkSignedUrl.Sign(url, _token);
+            var signedUri = _maplinkSignUrl.Sign(url, _token);
             return signedUri;
         }
     }

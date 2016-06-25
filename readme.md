@@ -1,6 +1,9 @@
 Desafio Desenvolvedor
 ======================================
 
+[![Build status](https://ci.appveyor.com/api/projects/status/38spj92u1vo778iy?svg=true)](https://ci.appveyor.com/project/jeduardocosta/desafio-dev)
+======================================
+
 Esta página contém detalhes do exercício utilizado como requisito para a oportunidade em aberto para atuar como desenvolvedor de software pela empresa MapLink.
 
 Uma equipe solicitou a criação de um componente para a realização de cálculos de valores totais da rota.

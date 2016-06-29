@@ -10,6 +10,8 @@ namespace Maplink.DesafioDev.WebApi.Lib.Handlers
 {
     public class ErrorHandler
     {
+        private static readonly JsonSerializerSettings CustomSerializerSettings = new CustomSerializerSettings();
+
         private readonly IDictionary<Type, Func<Exception, dynamic>> _mappedExceptions = new Dictionary<Type, Func<Exception, dynamic>>
         {
             {
@@ -42,7 +44,8 @@ namespace Maplink.DesafioDev.WebApi.Lib.Handlers
         private static Response CreateResponse(IEnumerable<string> errors, HttpStatusCode httpStatusCode)
         {
             var routeResponse = new RouteResponse(errors);
-            var jsonArray = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(routeResponse));
+            var jsonContent = JsonConvert.SerializeObject(routeResponse, CustomSerializerSettings);
+            var jsonArray = Encoding.UTF8.GetBytes(jsonContent);
 
             return new Response
             {

@@ -104,6 +104,7 @@
     <Compile Include="Lib\Compositions\BaseComposition.cs" />
     <Compile Include="Lib\Compositions\MaplinkServiceComposition.cs" />
     <Compile Include="Lib\CustomJsonSerializer.cs" />
+    <Compile Include="Lib\CustomSerializerSettings.cs" />
     <Compile Include="Lib\Handlers\ErrorHandler.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\RouteModule.cs" />

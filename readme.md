@@ -1,57 +1,93 @@
 Desafio Desenvolvedor
 ======================================
 
-Esta página contém detalhes do exercício utilizado como requisito para a oportunidade em aberto para atuar como desenvolvedor de software pela empresa MapLink.
+#### Desafio
 
-Uma equipe solicitou a criação de um componente para a realização de cálculos de valores totais da rota.
+[Detalhamento](https://github.com/jeduardocosta/desafio-dev/blob/master/challenge.md)
 
-O contrato do componente define como <b>entrada</b> os seguintes parâmetros:
+#### Continuous Delivery service
 
-Lista de endereços
+* Build and tests
 
-Cada endereço contém os dados:
+[![Build status](https://ci.appveyor.com/api/projects/status/38spj92u1vo778iy?svg=true)](https://ci.appveyor.com/project/jeduardocosta/desafio-dev)
 
-* Nome da rua/avenida;
-* Número;
-* Cidade;
-* Estado.
+#### Libraries utilizadas
 
+- [NancyFX](https://github.com/NancyFx/Nancy) - Lightweight, low-ceremony, framework for building HTTP based services
+- [FluentAssertions](https://github.com/dennisdoomen/FluentAssertions) - Fluent Assertions is a set of .NET extension methods that allow you to more naturally specify the expected outcome of a TDD or BDD-style test
+- [FluentValidation](https://github.com/JeremySkinner/FluentValidation) - A small validation library for .NET that uses a fluent interface and lambda expressions for building validation rules.
+- [LightInject](https://github.com/seesharper/LightInject) - An ultra lightweight IoC container
+- [NUnit](https://github.com/nunit/nunit) - Unit-testing framework for all .Net languages
+- [RestSharp](https://github.com/restsharp/RestSharp) - Simple REST and HTTP API Client
 
-O contrato de <b>saída</b> deste componente deve conter:
+#### Como utilizar?
 
-Valores totais da rota
+Através do recurso "routes", realizar ação POST e informar lista de endereços e tipo da rota (shortest ou fastest) a ser calculada.
 
-Neste item devem constar: 
+```json
+/routes
+```
 
-* Tempo total da rota;
-* Distância total;
-* Custo de combustível;
-* Custo total considerando pedágio.
+#### Exemplo de request
 
-Deve-se utilizar os web services de Geocodificação e de Rotas da MapLink para realizar esta tarefa. 
+```json
+{
+	"addresses": [{
+		"street": "av paulista",
+		"number": "1",
+		"city": "sao paulo",
+		"state": "sp"
+	}, {
+		"street": "av paulista",
+		"number": "200",
+		"city": "sp",
+		"state": "sp"
+	}],
+	"type": "shortest"
+}
+```
 
-Você encontrará <b>detalhes de uso</b> nestes endereços:
+#### Exemplo de response
 
-* <a href="http://dev.maplink.com.br/en/v2/maplinkapi-search/" target="_blank">Geocodificação - dev.maplink.com.br/en/v2/maplinkapi-search</a>
-* <a href="http://dev.maplink.com.br/en/v2/maplinkapi-route/" target="_blank">Roteirização - dev.maplink.com.br/en/v2/maplinkapi-route</a>
+##### Status code 200
 
-Para consumir os métodos dos serviços da MapLink é necessário utilizar um applicationCode e uma chave de acesso (token). Você deve utilizar os seguinte: 
+```json
+{
+	"data": [{
+		"totalTime": 5646,
+		"totalDistance": 76408,
+		"fuelCost": 0,
+		"totalCostWithToll": 0
+	}],
+	"errors": [],
+	"success": true
+}
+```
 
-ApplicationCode: desafiodev
+##### Status code 422
+```json
+{
+  "data": [],
+  "errors": [
+    "street information should be informed",
+    "entry state information is not valid"
+  ],
+  "success": false
+}
+```
 
-Chave de acesso (token): <b>z0vmywzpbCSLdJYl5mUk5m2jNGytNGt6NJu6NGU=</b>
+##### Status code 500
+```json
+{
+  "data": [],
+  "errors": [
+    "an error occurred"
+  ],
+  "success": false
+}
+```
 
+#### Próximos passos
 
-Você tem a <b>liberdade de escolher e definir</b> sobre a linguagem de programação, frameworks, design e arquitetura a ser adotada. O único requisito é a disponibilização deste componente para a utilização em outro projeto qualquer (independente de linguagem de programação / plataforma / ambiente).
-
-Outros parâmetros dos serviços de Geocodificação e de Rotas, os quais não foram mencionados, não são relevantes para essa solução, sendo assim, você tem a liberdade de definí-los como preferir.
-
-O compartilhamento do resultado produzido deve ser feito diretamente pelo GitHub. Para isso, faça um <a href="https://help.github.com/articles/fork-a-repo" target="_blank">fork</a> e nos envie sua versão com a devida implementação.
-
-Apesar do nome "desafio", o objetivo deste teste é avaliar como você desenvolvedor irá considerar questões como arquitetura e design de software, modelagem e aplicação de técnicas e conceitos de programação, e não simplesmente resolver o problema proposto, visto que o mesmo não oferece dificuldades para implementação.
-
-Qualquer dúvida, você pode enviar um e-mail para rhti@maplink.com.br.
-
-Lhe desejamos um ótimo desafio!
-
-*Time MapLink*
+- Converter projeto para [.NET Core](https://dotnet.github.io/)
+- Construir imagem no [Docker](https://www.docker.com/) e assim disponibilizar um ambiente pronto para testes funcionais da aplicação 

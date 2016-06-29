@@ -54,7 +54,7 @@ namespace Maplink.DesafioDev.WebApi.Tests.Lib.Handlers
 
                 json
                     .Should()
-                    .Contain("\"Errors\":[\"error 1\"]");
+                    .Contain("\"errors\":[\"error 1\"]");
             }
         }
 
@@ -74,7 +74,7 @@ namespace Maplink.DesafioDev.WebApi.Tests.Lib.Handlers
 
                 json
                     .Should()
-                    .Contain("\"Errors\":[\"error 1\",\"error 2\"]");
+                    .Contain("\"errors\":[\"error 1\",\"error 2\"]");
             }
         }
 

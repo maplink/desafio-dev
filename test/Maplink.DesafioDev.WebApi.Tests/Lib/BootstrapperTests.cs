@@ -9,7 +9,7 @@ using Maplink.DesafioDev.Infrastructure.Services;
 using Maplink.DesafioDev.WebApi.Lib;
 using NUnit.Framework;
 
-namespace Maplink.DesafioDev.WebApi.Tests.Lib.Handlers
+namespace Maplink.DesafioDev.WebApi.Tests.Lib
 {
     [TestFixture]
     public class BootstrapperTests
